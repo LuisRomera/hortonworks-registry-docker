@@ -18,12 +18,14 @@ COPY config/registry.yaml.template /opt/hortonworks-registry/conf/registry.yaml.
 COPY entrypoint.sh /opt/hortonworks-registry/entrypoint.sh
 COPY wait-for-it.sh /opt/hortonworks-registry/wait-for-it.sh
 COPY lib/mysql-connector-java.jar /opt/hortonworks-registry/mysql-connector-java.jar
+COPY lib/mysql-connector-java-2.0.14.jar /opt/hortonworks-registry/mysql-connector-java-2.0.14.jar
 
 
 RUN chmod +x /opt/hortonworks-registry/entrypoint.sh && \
     chmod +x /opt/hortonworks-registry/wait-for-it.sh && \
     chown -R hortonworks:hortonworks /opt/hortonworks-registry-0.9.1 && \
-    export CLASSPATH=/opt/hortonworks-registry/mysql-connector-java.jar:$CLASSPATH
+    export CLASSPATH=/opt/hortonworks-registry/mysql-connector-java.jar:$CLASSPATH && \
+    export CLASSPATH=/opt/hortonworks-registry/mysql-connector-java-2.0.14.jar:$CLASSPATH
 
 ENV DB_NAME schema_registry
 ENV DB_USER registry_user

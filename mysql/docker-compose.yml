@@ -1,22 +1,5 @@
-version: '2'
-
+version: '3.3'
 services:
-
-#  db:
-#    image: mysql:5.7.17
-#    ports:
-#      - "3307:3306"
-#    volumes:
-#      - 'mysqldb_data:/var/lib/mysql'
-#    networks:
-#      default:
-#        aliases:
-#          - db
-#    environment:
-#      MYSQL_ROOT_PASSWORD: password
-#      MYSQL_DATABASE: hortonworks
-#      MYSQL_USER: hortonworks
-#      MYSQL_PASSWORD: password
   db:
     image: mysql:5.7
     restart: always
@@ -37,21 +20,7 @@ services:
       # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
-
-  registry:
-    build: .
-    depends_on:
-      - db
-    ports:
-      - "9090:9090"
-    environment:
-      DB_NAME: hortonworks
-      DB_USER: hortonworks
-      DB_PASSWORD: password
-      DB_PORT: 3306
-      DB_HOST: db
-
-
+# Names our volume
 volumes:
-  mysqldb_data:
-    driver: local
+  my-db:
+
